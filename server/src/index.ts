@@ -1,25 +1,24 @@
-// username: dtorrez1996
-// ETKAUPUWUKoQ8ZQV
-
-import express from "express";
+import cors from "cors";
+import express, { Express } from "express";
 import mongoose from "mongoose";
-import { financialRecordRouter } from "./routes/financial-record-router";
+import financialRecordRouter from "./routes/financial-record-router";
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+const app: Express = express();
+const port = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(cors());
 
 const mongoURI: string =
   "mongodb+srv://dtorrez1996:ETKAUPUWUKoQ8ZQV@financem8.bxbjx.mongodb.net/";
 
 mongoose
   .connect(mongoURI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Error connecting to MongoDB", err));
+  .then(() => console.log("CONNECTED TO MONGODB!"))
+  .catch((err) => console.error("Failed to Connect to MongoDB:", err));
 
-app.use("/api/financial-records", financialRecordRouter);
+app.use("/financial-records", financialRecordRouter);
 
-app.listen(PORT, () => {
-  console.log(`[server]: Server is running at http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`[server]: Server is running at http://localhost:${port}`);
 });

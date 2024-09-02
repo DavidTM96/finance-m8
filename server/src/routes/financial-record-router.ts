@@ -1,74 +1,60 @@
-import { Request, Response, Router } from "express";
+import express, { Request, Response } from "express";
 import FinancialRecordModel from "../schema/financial-record";
 
-export const financialRecordRouter = Router();
+const router = express.Router();
 
-// GET /api/financial-records
-financialRecordRouter.get("/", async (req: Request, res: Response) => {
-  try {
-    const records = await FinancialRecordModel.find();
-  } catch (error) {}
-});
-
-// GET /api/financial-records/:id
-financialRecordRouter.get("/:id", async (req: Request, res: Response) => {
+router.get("/getAllByUserID/:userId", async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
     const records = await FinancialRecordModel.find({ userId: userId });
     if (records.length === 0) {
-      return res.status(404).json({ message: "No records found" });
+      return res.status(404).send("No records found for the user.");
     }
-    res.status(200).json(records);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching records", error });
+    res.status(200).send(records);
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
-// POST /api/financial-records
-financialRecordRouter.post("/", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   try {
-    const newRecord = req.body;
-    const record = new FinancialRecordModel(newRecord);
-    await record.save();
-    res.status(201).json(record);
-  } catch (error) {
-    res.status(500).json({ message: "Error creating record", error });
+    const newRecordBody = req.body;
+    const newRecord = new FinancialRecordModel(newRecordBody);
+    const savedRecord = await newRecord.save();
+
+    res.status(200).send(savedRecord);
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
-// PATCH /api/financial-records/:id
-financialRecordRouter.patch("/:id", async (req: Request, res: Response) => {
+router.put("/:id", async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
-    const updatedRecord = req.body;
+    const newRecordBody = req.body;
     const record = await FinancialRecordModel.findByIdAndUpdate(
       id,
-      updatedRecord,
+      newRecordBody,
       { new: true }
     );
-    if (!record) {
-      return res
-        .status(404)
-        .json({ message: `Record with id ${id} not found` });
-    }
-    res.status(200).json(record);
-  } catch (error) {
-    res.status(500).json({ message: "Error updating record", error });
+
+    if (!record) return res.status(404).send();
+
+    res.status(200).send(record);
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
-// DELETE /api/financial-records/:id
-financialRecordRouter.delete("/:id", async (req: Request, res: Response) => {
+router.delete("/:id", async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const record = await FinancialRecordModel.findByIdAndDelete(id);
-    if (!record) {
-      return res
-        .status(404)
-        .json({ message: `Record with id ${id} not found` });
-    }
-    res.status(200).json(record);
-  } catch (error) {
-    res.status(500).json({ message: "Error deleting record", error });
+    if (!record) return res.status(404).send();
+    res.status(200).send(record);
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
+
+export default router;
