@@ -1,7 +1,7 @@
-import { useUser } from "@clerk/clerk-react";
+import { SignOutButton, UserButton, useUser } from "@clerk/clerk-react";
 import { useMemo } from "react";
 import { useFinancialRecords } from "../../contexts/financial-record-context";
-import "./FinancialRecord.scss";
+import "./Dashboard.scss";
 import { FinancialRecordForm } from "./FinancialRecordForm";
 import { FinancialRecordList } from "./FinancialRecordList";
 
@@ -20,6 +20,10 @@ export const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      <div className="user-button-container">
+        <UserButton />
+        <SignOutButton redirectUrl="/auth" />
+      </div>
       <h1> Welcome {user?.firstName}! Here Are Your Finances:</h1>
       <FinancialRecordForm />
       <div>Total Monthly: ${totalMonthly}</div>

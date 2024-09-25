@@ -1,8 +1,10 @@
-.app-container {
+.sign-in-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
   width: 100%;
   height: 100%;
+  gap: 2rem;
 }
