@@ -20,10 +20,10 @@ export const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="user-button-container">
+      <header className="dashboard-header">
         <UserButton />
         <SignOutButton redirectUrl="/auth" />
-      </div>
+      </header>
       <h1> Welcome {user?.firstName}! Here Are Your Finances:</h1>
       <FinancialRecordForm />
       <div>Total Monthly: ${totalMonthly}</div>
