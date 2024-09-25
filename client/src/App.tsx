@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import { FinancialRecordsProvider } from "./contexts/financial-record-context";
 import { Auth } from "./pages/auth";
 import { Dashboard } from "./pages/dashboard";

@@ -62,7 +62,7 @@ export const FinancialRecordsProvider = ({
         setRecords((prev) => [...prev, newRecord]);
       }
     } catch (err) {
-      throw new Error(`Error adding record: ${err}`);
+      throw new Error(`Failed to add record: ${err}`);
     }
   };
 
@@ -92,7 +92,7 @@ export const FinancialRecordsProvider = ({
         );
       }
     } catch (err) {
-      throw new Error(`Error updating record: ${err}`);
+      throw new Error(`Failed to update record: ${err}`);
     }
   };
 
@@ -112,7 +112,7 @@ export const FinancialRecordsProvider = ({
         );
       }
     } catch (err) {
-      throw new Error(`Error deleting record: ${err}`);
+      throw new Error(`Failed to delete record: ${err}`);
     }
   };
 
