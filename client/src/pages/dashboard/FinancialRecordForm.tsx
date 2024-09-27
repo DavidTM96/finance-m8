@@ -1,4 +1,5 @@
 import { useUser } from "@clerk/clerk-react";
+import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 import { useFinancialRecords } from "../../contexts/financial-record-context";
 
@@ -85,6 +86,7 @@ export const FinancialRecordForm = () => {
           </select>
         </div>
         <button type="submit" className="button">
+          <PlusCircle className="plus-circle-icon" />
           Add Record
         </button>
       </form>
