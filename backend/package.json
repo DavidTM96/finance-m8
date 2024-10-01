@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --inspect -- src/index.ts",
+    "server": "tsnd --inspect -- src/index.ts",
     "build": "tsc -p ."
   },
   "keywords": [],

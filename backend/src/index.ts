@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import financialRecordRouter from "./routes/financial-record-router";
 
 const app: Express = express();
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cors());
@@ -19,6 +19,6 @@ mongoose
 
 app.use("/financial-records", financialRecordRouter);
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`[server]: Server is running at http://localhost:${PORT}`);
 });
