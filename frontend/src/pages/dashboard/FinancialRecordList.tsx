@@ -4,6 +4,7 @@ import {
   FinancialRecord,
   useFinancialRecords,
 } from "../../contexts/financial-record-context";
+import { formatDate } from "../../utils/formatDate";
 
 interface EditableCellProps extends CellProps<FinancialRecord> {
   updateRecord: (rowIndex: number, columnId: string, value: unknown) => void;
@@ -155,7 +156,11 @@ export const FinancialRecordList = () => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                  <td {...cell.getCellProps()}>
+                    {cell.column.id === "date"
+                      ? formatDate(new Date(cell.value))
+                      : cell.render("Cell")}{" "}
+                  </td>
                 ))}
               </tr>
             );

@@ -1,5 +1,5 @@
 .dashboard__container {
-  width: 80%;
+  width: 90%;
   height: 100%;
   padding: 2rem 0;
 }
@@ -39,6 +39,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.cl-userButtonTrigger {
+  border: 2px outset #06d6a0;
+  height: 35px;
+  width: 35px;
 }
 
 .dashboard__sign-out-btn {
