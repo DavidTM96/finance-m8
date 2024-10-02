@@ -51,6 +51,12 @@ const EditableCell: React.FC<EditableCellProps> = ({
 export const FinancialRecordList = () => {
   const { records, updateRecord, deleteRecord } = useFinancialRecords();
 
+  const sortedRecords = useMemo(() => {
+    return [...records].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+  }, [records]);
+
   const updateCellRecord = (
     rowIndex: number,
     columnId: string,
@@ -136,7 +142,7 @@ export const FinancialRecordList = () => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
-      data: records,
+      data: sortedRecords,
     });
   return (
     <div className="table-container">
