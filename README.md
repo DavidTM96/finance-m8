@@ -41,7 +41,7 @@ To run the app, click on the following link: <a href="https://www.google.com/" t
 Contributions are welcome! Here are some ways you can get started:
 1. **Report bugs:** If you encounter any bugs, please let us know. Open up an issue and let us know the problem.
 2. **Contribute code:** If you are a developer and want to contribute, follow the instructions below to get started!
-3. **Suggestions:** If you don't want to code but have some awesome ideas, open up an issue explaining some updates or imporvements you would like to see!
+3. **Suggestions:** If you don't want to code but have some awesome ideas, open up an issue explaining some updates or improvements you would like to see!
 4. **Documentation:** If you see the need for some additional documentation, feel free to add some!
 
 ## Instructions
@@ -49,12 +49,12 @@ Contributions are welcome! Here are some ways you can get started:
 2. Clone the forked repository
 3. Add your contributions (code or documentation)
 4. Commit and push
-5. Wait for pull request to be merged
+5. Wait for the pull request to be merged
 
 ## Contact
 If you have any questions or would like to discuss potential job opportunities, feel free to reach out:
 - Email: <a href="mailto:dtorrez1996@gmail.com">dtorrez1996@gmail.com</a>
-- LinkedIn: <a href="www.linkedin.com/in/david-torrez" target="_blank">www.linkedin.com/in/david-torrez</a>
+- LinkedIn: <a href="https://www.linkedin.com/in/david-torrez/" target="_blank">David Torrez</a>
 
 Thank you for checking out Finance M8! I hope you find it useful and consider it for your financial management needs.
 
