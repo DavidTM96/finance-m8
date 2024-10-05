@@ -189,3 +189,20 @@ label {
 .table tbody tr:hover {
   background-color: #e8f4f8;
 }
+
+.date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.sort-button {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1b9aaa;
+}

@@ -1,3 +1,4 @@
+import { ArrowDownAZ, ArrowDownZA } from "lucide-react";
 import { useMemo, useState } from "react";
 import { CellProps, Column, useTable } from "react-table";
 import {
@@ -50,12 +51,21 @@ const EditableCell: React.FC<EditableCellProps> = ({
 
 export const FinancialRecordList = () => {
   const { records, updateRecord, deleteRecord } = useFinancialRecords();
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
-  const sortedRecords = useMemo(() => {
+  /*   const sortedRecords = useMemo(() => {
     return [...records].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
-  }, [records]);
+  }, [records]); */
+  const sortedRecords = useMemo(() => {
+    const sorted = [...records].sort((a, b) =>
+      sortDirection === "asc"
+        ? new Date(a.date).getTime() - new Date(b.date).getTime()
+        : new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    return sorted;
+  }, [records, sortDirection]);
 
   const updateCellRecord = (
     rowIndex: number,
@@ -64,6 +74,12 @@ export const FinancialRecordList = () => {
   ) => {
     const id = records[rowIndex]?._id;
     updateRecord(id ?? "", { ...records[rowIndex], [columnId]: value });
+  };
+
+  const toggleSortDirection = () => {
+    setSortDirection((prevDirection) =>
+      prevDirection === "asc" ? "desc" : "asc"
+    );
   };
 
   const columns: Array<Column<FinancialRecord>> = useMemo(
@@ -113,7 +129,14 @@ export const FinancialRecordList = () => {
         ),
       },
       {
-        Header: "Date",
+        Header: () => (
+          <div className="date-header">
+            <p>Date</p>
+            <button onClick={toggleSortDirection} className="sort-button">
+              {sortDirection === "asc" ? <ArrowDownAZ /> : <ArrowDownZA />}
+            </button>
+          </div>
+        ),
         accessor: "date",
         Cell: (props) => (
           <EditableCell
@@ -136,7 +159,7 @@ export const FinancialRecordList = () => {
         ),
       },
     ],
-    [records]
+    [records, sortDirection]
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
