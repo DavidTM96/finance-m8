@@ -7,6 +7,7 @@ Welcome to **Finance M8**! This is a powerful and user-friendly money manager ap
 - User authentication with Clerk
 - Add, update, and delete financial records
 - Editable table cells for quick updates
+- Sort records by date
 - Responsive design for mobile and desktop
 
 ## Technologies Used
