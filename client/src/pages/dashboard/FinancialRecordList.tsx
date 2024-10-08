@@ -53,11 +53,6 @@ export const FinancialRecordList = () => {
   const { records, updateRecord, deleteRecord } = useFinancialRecords();
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
-  /*   const sortedRecords = useMemo(() => {
-    return [...records].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
-  }, [records]); */
   const sortedRecords = useMemo(() => {
     const sorted = [...records].sort((a, b) =>
       sortDirection === "asc"
