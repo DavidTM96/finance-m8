@@ -36,7 +36,7 @@ Welcome to **Finance M8**! This is a powerful and user-friendly money manager ap
 
 ## Try it out!
 
-To run the app, click on the following link: <a href="https://www.google.com/" target="_blank">Finance M8</a>
+To run the app, click on the following link: <a href="https://finance-m8.vercel.app/" target="_blank">Finance M8</a>
 
 ## Contributing
 Contributions are welcome! Here are some ways you can get started:
