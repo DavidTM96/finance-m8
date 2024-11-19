@@ -1,5 +1,6 @@
 import { useUser } from "@clerk/clerk-react";
 import { createContext, useContext, useEffect, useState } from "react";
+const serverUrl = import.meta.env.VITE_SERVER_URL;
 
 export interface FinancialRecord {
   _id?: string;
@@ -33,7 +34,7 @@ export const FinancialRecordsProvider = ({
   const fetchRecords = async () => {
     if (!user) return;
     const response = await fetch(
-      `http://localhost:3001/financial-records/getAllByUserID/${user.id}`
+      `${serverUrl}/financial-records/getAllByUserID/${user.id}`
     );
 
     if (response.ok) {
@@ -48,7 +49,7 @@ export const FinancialRecordsProvider = ({
   }, [user]);
 
   const addRecord = async (record: FinancialRecord) => {
-    const response = await fetch("http://localhost:3001/financial-records", {
+    const response = await fetch(`${serverUrl}/financial-records`, {
       method: "POST",
       body: JSON.stringify(record),
       headers: {
@@ -67,16 +68,13 @@ export const FinancialRecordsProvider = ({
   };
 
   const updateRecord = async (id: string, newRecord: FinancialRecord) => {
-    const response = await fetch(
-      `http://localhost:3001/financial-records/${id}`,
-      {
-        method: "PUT",
-        body: JSON.stringify(newRecord),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${serverUrl}/financial-records/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(newRecord),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     try {
       if (response.ok) {
@@ -97,12 +95,9 @@ export const FinancialRecordsProvider = ({
   };
 
   const deleteRecord = async (id: string) => {
-    const response = await fetch(
-      `http://localhost:3001/financial-records/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${serverUrl}/financial-records/${id}`, {
+      method: "DELETE",
+    });
 
     try {
       if (response.ok) {
